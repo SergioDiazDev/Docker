@@ -1,6 +1,5 @@
 FROM debian:bullseye
 
-ENV NETWORK=inception
 
 #Install Utils
 RUN apt-get update
@@ -15,6 +14,7 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY conf/my.cnf /etc/mysql/my.cnf
 COPY tools/init_MariaDB.sh /
 
+
 RUN chown mysql:mysql /etc/mysql/my.cnf
 
 #RUN service mariadb stop
@@ -22,4 +22,4 @@ RUN service mariadb start
 
 EXPOSE 3306
 
-#CMD ["mysqld"]
+CMD ["./init_MariaDB.sh"]
