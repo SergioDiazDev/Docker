@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 5
+
 WP_CONFIG_FILE="/var/www/wordpress/wp-config.php"
 WP_CONFIG_SAMPLE="/var/www/wordpress/wp-config-sample.php"
 WP_CLI_URL="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"

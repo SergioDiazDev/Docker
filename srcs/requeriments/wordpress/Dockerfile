@@ -6,7 +6,7 @@ RUN apt-get install -y wget curl php7.4 php-fpm php-mysql mariadb-client
 RUN wget https://es.wordpress.org/wordpress-6.4.3-es_ES.tar.gz -P /var/www && \
 	cd /var/www && tar -xzf wordpress-6.4.3-es_ES.tar.gz && rm wordpress-6.4.3-es_ES.tar.gz
 
-COPY conf/pool.d /etc/php/7.4/fpm/pool.d
+COPY conf/pool.d /etc/php/7.4/fpm/php-fpm.conf
 COPY conf/www.conf /etc/php/7.4/fpm/www.conf
 COPY tools/auto_config.sh /auto_config.sh
 
