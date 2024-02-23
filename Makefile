@@ -1,26 +1,20 @@
-DIR			=	srcs/requirements/
+DATA = /home/sdiaz-ru/data
+WORDPRESS = /home/sdiaz-ru/data/wordpress
+MARIADB = /home/sdiaz-ru/data/mariadb
 
-MARIADB		=	mariadb
-PORTMARIADB	=	3306:3306
 
-NGINX		=	nginx
-PORTNGINX	=	80:80
+all: start
 
-WP			=	nginx
-PORTWP		=	80:80
+init:
+	mkdir -p $(DATA) $(WORDPRESS) $(MARIADB)
 
-prune:
-		docker container prune -f
-		docker image prune -f
+start: init
+		docker-compose -f srcs/docker-compose.yml up
 
-mariadb:
-		docker build -t $(MARIADB) $(DIR)$(MARIADB)/
-		docker run -p $(PORTMARIADB) $(MARIADB)
+stop:
+	docker-compose -f srcs/docker-compose.yml down
 
-nginx:
-		docker build -t $(NGINX) $(DIR)$(NGINX)/
-		docker run -p $(PORTNGINX) $(NGINX)
+clean:
+	rm -fr $(DATA)
 
-wordpress:
-		docker build -t $(WP) $(DIR)$(WP)/
-		docker run -p $(PORTWP) $(WP)
+.PHONY: all init start stop clean 
