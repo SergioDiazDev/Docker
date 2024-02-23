@@ -1,12 +1,13 @@
 #!/bin/bash
 
-sleep 5
+until mysqladmin ping -h mariadb.srcs_inception --silent; do
+        echo "Esperando a que MariaDB se inicie..."
+        sleep 5
+    done
 
 WP_CONFIG_FILE="/var/www/wordpress/wp-config.php"
 WP_CONFIG_SAMPLE="/var/www/wordpress/wp-config-sample.php"
 WP_CLI_URL="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
-
-echo "SE EJECUTO EL SCRIPT"
 
 if ! [[ -f /var/www/wordpress/wp-config.php ]]; then
     # Descargar WP-CLI
